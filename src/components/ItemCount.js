@@ -1,15 +1,18 @@
 import { useState, useContext } from "react";
 import { ButtonGroup, Button, Stack } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 import cartContext from "../context/cartContext";
 
 const ItemCount = ({ drink }) => {
 
+    const history = useHistory();
+
     const { addItem } = useContext(cartContext);
 
     const [ count, setCount ] = useState(1);
 
-    const handleClick = () => addItem(drink);
+    const handleClick = () => addItem(drink, count);
 
 
     const upCount = () => {
@@ -17,8 +20,6 @@ const ItemCount = ({ drink }) => {
         if (count < drink.stock){
     
             setCount(count + 1)
-
-            drink.cantidad = count;
     
         }
 
@@ -30,16 +31,9 @@ const ItemCount = ({ drink }) => {
 
             setCount(count - 1)
 
-            drink.cantidad = count;
-
         }
 
     };
-
-    
-
-    console.log('cant', drink.cantidad);
-
 
     return (
 
@@ -78,9 +72,9 @@ const ItemCount = ({ drink }) => {
                 
             </div>
 
-            <Button variant="primary" className="mt-3" onClick={() => handleClick(drink)}>Agregar al carrito</Button>
+            <Button variant="primary" className="mt-3" onClick={() => handleClick(drink, count)}>Agregar al carrito</Button>
 
-            <Button variant="outline-primary" className="mt-2" href="/">Volver al listado de productos</Button>
+            <Button variant="outline-primary" className="mt-2" onClick={() => history.push('/')}>Volver al listado de productos</Button>
 
         </Stack>
 

@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 
 import logo from '../images/logoblanco.png';
 import CartWidget from './CartWidget';
 import cartContext from '../context/cartContext';
 
 
-const NavBar = ({totalProducts}) => {
+const NavBar = () => {
 
-    const { cart } = useContext(cartContext);
+    const { cart, totalQty } = useContext(cartContext);
+
+    const history = useHistory();
 
     return (
         
@@ -30,15 +33,15 @@ const NavBar = ({totalProducts}) => {
             
                 <Nav>
       
-                    <Nav.Link href="/category/tintos">Vinos Tintos</Nav.Link>
+                    <Nav.Link onClick={() => history.push('/category/tintos')}>Vinos Tintos</Nav.Link>
             
-                    <Nav.Link href="/category/blancos">Vinos Blancos</Nav.Link>
+                    <Nav.Link onClick={() => history.push('/category/blancos')}>Vinos Blancos</Nav.Link>
             
-                    <Nav.Link href="/category/espumantes">Espumantes</Nav.Link>
+                    <Nav.Link onClick={() => history.push('/category/espumantes')}>Espumantes</Nav.Link>
 
-                    <Nav.Link href="/cart">
+                    <Nav.Link onClick={() => history.push('/cart')}>
                         
-                        <CartWidget countCartItems={cart.length} />   
+                        <CartWidget countCartItems={totalQty} />   
                             
                     </Nav.Link>
         

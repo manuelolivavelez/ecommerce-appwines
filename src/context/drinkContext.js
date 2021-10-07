@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getDataBase } from '../api/firebase';
-import { collection, getDocs } from "firebase/firestore";
 
 
 const drinkContext = createContext({});

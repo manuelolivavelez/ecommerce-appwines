@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Container, Card, Row, Button, Col, Spinner } from 'react-bootstrap';
 
+import { useParams } from 'react-router';
+
 import drinkContext from '../context/drinkContext';
 
 
@@ -9,8 +11,16 @@ const ItemList = () => {
 
   const history = useHistory();
   
-  const { drinks, loading } = useContext(drinkContext);
+  let { drinks, loading } = useContext(drinkContext);
 
+  const { categoria } = useParams()
+
+  if(typeof categoria !== 'undefined') {
+
+    drinks = drinks.filter((product) => product.categoria === categoria);
+
+  }
+  
   console.log("ItemList drinks", drinks);
 
   const handleNavigationDetail = (id) => {

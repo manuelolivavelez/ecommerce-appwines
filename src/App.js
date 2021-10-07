@@ -7,6 +7,7 @@ import ItemList from './components/ItemList';
 import NavBar from './components/NavBar';
 import Cart from './components/Cart';
 import ItemDetail from './components/ItemDetail';
+import ThankYouPage from './components/ThankYouPage'
 
 
 const App = () => {
@@ -44,6 +45,12 @@ const App = () => {
             <Route path="/cart">
                 
               <Cart />
+              
+            </Route>
+
+            <Route path="/thank-you">
+                
+              <ThankYouPage />
               
             </Route>
             
